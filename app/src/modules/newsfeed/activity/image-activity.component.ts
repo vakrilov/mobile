@@ -6,14 +6,14 @@ import * as appSettings from "application-settings";
 
 @Component({
   moduleId: module.id,
-  selector: 'activity',
-  templateUrl: 'activity.component.html',
+  selector: 'image-activity',
+  templateUrl: 'image-activity.component.html',
   styleUrls: ['activity.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
   //styleUrls: ['activity.component.css']
 })
 
-export class Activity {
+export class ImageActivity {
 
   entity;
 

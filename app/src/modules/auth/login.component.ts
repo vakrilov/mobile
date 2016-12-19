@@ -12,8 +12,8 @@ import { OAuth2 } from '../../common/services/api/oauth2';
   template: `
     <StackLayout style.verticalAlignment="center">
         <Image src="~/src/assets/full_logo.png" horizontalAlignment="center" class="m-auth-login-logo"></Image>
-        <TextField #username col="1" hint="Username" ></TextField>
-        <TextField #password hint="Password" secure="true"></TextField>
+        <TextField #username col="1" hint="Username" text="nsdemo"></TextField>
+        <TextField #password hint="Password" secure="true" text="angular"></TextField>
         <Button text="Login" (tap)="login(username, password)" class="submit-button"></Button>
     </StackLayout>
   `,

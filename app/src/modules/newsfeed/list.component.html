@@ -9,11 +9,26 @@
 
 
 <PullToRefresh #puller (refresh)="refresh(puller)">
-  <ListView [items]="feed" (loadMoreItems)="loadMore()">
-    <template let-item="item" let-i="index" let-odd="odd" let-even="even">
-      <StackLayout [class.odd]="odd" [class.even]="even">
+  <ListView [items]="feed" (loadMoreItems)="loadMore()" [itemTemplateSelector]="templateSelector">
+
+    <template let-item="item" nsTemplateKey="activity">
+      <StackLayout>
         <activity [entity]="item"></activity>
       </StackLayout>
     </template>
+
+    <template let-item="item" nsTemplateKey="image-activity">
+      <StackLayout>
+        <image-activity [entity]="item"></image-activity>
+      </StackLayout>
+    </template>
+
+    <template let-item="item" nsTemplateKey="batch-activity">
+      <StackLayout>
+        <image-activity [entity]="item"></image-activity>
+      </StackLayout>
+    </template>
+    
   </ListView>
 </PullToRefresh>
+

@@ -9,7 +9,6 @@
   ></Image>
   <StackLayout orientation="vertical" left="60">
     <Label [text]="entity.ownerObj.name" style="font-weight:bold"></Label>
-    <!--<Label [text]='"@" + entity.ownerObj.username +""' style="font-size:11"></Label>-->
     <Label [text]="entity.time_created * 1000 | date :'medium'" style="font-size:11; color: #888"></Label>
   </StackLayout>
 
@@ -21,6 +20,40 @@
     editable="false"
     class="m-native--activity--message"
     ></TextView>
+
+  <!-- Rich content -->
+  <!-- Image -->
+  <StackLayout class="m-native--activity--rich-embed">
+    <GridLayout rows="auto" columns="*" class="m-rich-embed">
+      <android>
+        <FrescoDrawee
+          [imageUri]="entity.thumbnail_src"
+          actualImageScaleType="focusCrop"
+          verticalAlignment="top"
+          showProgressBar="false"
+          progressBarColor="#AB5400"
+          width="100%"
+          aspectRatio="1.3"
+        ></FrescoDrawee>
+      </android>
+      <ios>
+        <Image
+          [src]="entity.thumbnail_src"
+          stretch="aspectFill"
+          width="100%"
+          height="200"
+        ></Image>
+      </ios>
+    </GridLayout>
+    
+    <StackLayout class="m-native--activity--rich-embed--meta">
+      <Label [text]="entity.title" style="font-weight:bold"></Label>
+      <TextView [text]="entity.description"
+        editable="false"
+        ></TextView>
+      <Label [text]="entity.perma_url" style="font-size:11; color: #888"></Label>
+    </StackLayout>
+  </StackLayout>
 
   <FlexboxLayout flexDirection="row" style="padding:8; text-align:center; color:#888">
     <StackLayout flexGrow="1">

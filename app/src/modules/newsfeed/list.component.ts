@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular/router';
 import * as appSettings from "application-settings";
-import {registerElement} from "nativescript-angular/element-registry";
+import { registerElement } from "nativescript-angular/element-registry";
 registerElement("PullToRefresh", () => {
-    var viewClass = require("nativescript-pulltorefresh").PullToRefresh;
-    return viewClass;
+  var viewClass = require("nativescript-pulltorefresh").PullToRefresh;
+  return viewClass;
 });
 
 import { Client } from '../../common/services/api/client';
@@ -18,24 +18,25 @@ import { Client } from '../../common/services/api/client';
 })
 
 export class NewsfeedList {
+  isProfiling: boolean;
 
-  feed : Array<any> = [];
-  offset : string = "";
-  inProgress : boolean = true;
+  feed: Array<any> = [];
+  offset: string = "";
+  inProgress: boolean = true;
 
-  constructor(private client : Client, private routerExtensions : RouterExtensions, private cd : ChangeDetectorRef){}
+  constructor(private client: Client, private routerExtensions: RouterExtensions, private cd: ChangeDetectorRef) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.loadList();
   }
 
-  loadList(){
+  loadList() {
     return new Promise((res, err) => {
       this.inProgress = true;
-      this.client.get('api/v1/newsfeed', { limit: 12, offset: this.offset})
-        .then((response : any) => {
+      this.client.get('api/v1/newsfeed', { limit: 12, offset: this.offset })
+        .then((response: any) => {
           //console.log(response);
-          for(let activity of response.activity){
+          for (let activity of response.activity) {
             this.feed.push(activity);
           }
           this.inProgress = false;
@@ -47,7 +48,7 @@ export class NewsfeedList {
     });
   }
 
-  refresh(puller){
+  refresh(puller) {
     this.offset = "";
     this.feed = [];
     this.loadList()
@@ -56,13 +57,27 @@ export class NewsfeedList {
       })
   }
 
-  loadMore(){
+  loadMore() {
     this.loadList();
   }
 
-  logout(){
+  logout() {
     appSettings.clear();
     this.routerExtensions.navigate(['/login'], { clearHistory: true });
   }
 
+  public templateSelector = (entity, index: number, items: any) => {
+    if (entity.thumbnail_src) {
+      return "image-activity";
+    }
+    else if (entity.custom_type == 'batch') {
+      return "batch-activity";
+    }
+    // else if (entity.custom_type == 'video' ){
+    //   return "video";
+    // }
+
+    return "activity";
+    // return entity.remind_object ? "reminder" : "activity";
+  }
 }

@@ -1,4 +1,4 @@
-import { NgModule }     from '@angular/core';
+import { NgModule } from '@angular/core';
 import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { NativeScriptModule } from "nativescript-angular/platform";
 
@@ -6,6 +6,8 @@ import { Client } from '../../common/services/api/client';
 import { NewsfeedList } from './list.component';
 import { NewsfeedSingleComponent } from './single.component';
 import { Activity } from './activity/activity.component';
+import { ImageActivity } from './activity/image-activity.component';
+import { BatchActivity } from './activity/batch-activity.component';
 import { Remind } from './activity/remind.component';
 import { ButtonsModule } from '../buttons/buttons.module';
 
@@ -27,9 +29,9 @@ import { ImageCachePipe } from '../../common/pipes/image-cache.pipe';
   exports: [
     RouterModule
   ]*/
-  imports: [ NativeScriptModule, NativeScriptRouterModule, ButtonsModule ],
-  providers: [ Client ],
-  declarations: [ NewsfeedList, NewsfeedSingleComponent, Activity, Remind, ImageCachePipe ],
-  exports: [ NewsfeedList, NewsfeedSingleComponent, Activity, Remind ]
+  imports: [NativeScriptModule, NativeScriptRouterModule, ButtonsModule],
+  providers: [Client],
+  declarations: [NewsfeedList, NewsfeedSingleComponent, Activity, ImageActivity, BatchActivity, Remind, ImageCachePipe],
+  exports: [NewsfeedList, NewsfeedSingleComponent, Activity, ImageActivity, BatchActivity, Remind]
 })
 export class NewsfeedModule { }

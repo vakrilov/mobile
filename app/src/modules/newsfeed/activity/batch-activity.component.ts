@@ -6,14 +6,14 @@ import * as appSettings from "application-settings";
 
 @Component({
   moduleId: module.id,
-  selector: 'activity',
-  templateUrl: 'activity.component.html',
+  selector: 'batch-activity',
+  templateUrl: 'batch-activity.component.html',
   styleUrls: ['activity.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
   //styleUrls: ['activity.component.css']
 })
 
-export class Activity {
+export class BatchActivity {
 
   entity;
 

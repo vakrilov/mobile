@@ -22,6 +22,31 @@
     class="m-native--activity--message"
     ></TextView>
 
+  <!-- Multipart Image -->
+  <GridLayout rows="auto" columns="*">
+    <android>
+      <FrescoDrawee
+        [imageUri]="entity.custom_data[0].src"
+        actualImageScaleType="focusCrop"
+        verticalAlignment="top"
+        showProgressBar="false"
+        progressBarColor="#AB5400"
+        width="100%"
+        aspectRatio="1.3"
+      ></FrescoDrawee>
+    </android>
+    <ios>
+      <Image
+        [src]="entity.custom_data[0].src"
+        stretce="aspectFill"
+        stretch="aspectFill"
+        width="100%"
+        height="300"
+        >
+      </Image>
+    </ios>
+  </GridLayout>
+
   <FlexboxLayout flexDirection="row" style="padding:8; text-align:center; color:#888">
     <StackLayout flexGrow="1">
       <minds-button-thumbs-up [entity]="entity" ></minds-button-thumbs-up>
