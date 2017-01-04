@@ -11,6 +11,7 @@
     <Label [text]="entity.ownerObj.name" style="font-weight:bold"></Label>
     <!--<Label [text]='"@" + entity.ownerObj.username +""' style="font-size:11"></Label>-->
     <Label [text]="entity.time_created * 1000 | date :'medium'" style="font-size:11; color: #888"></Label>
+    <Label text="activity.component.html" style="font-size:11; color: red"></Label>
   </StackLayout>
 
 </AbsoluteLayout>
@@ -59,7 +60,7 @@
   </StackLayout>
 
 
-  <FlexboxLayout flexDirection="row" *ngIf="!entity.remind_object" style="padding:8; text-align:center; color:#888">
+  <FlexboxLayout flexDirection="row" [visibility]="entity.remind_object ? 'collapse' : 'visible'" style="padding:8; text-align:center; color:#888">
     <StackLayout flexGrow="1">
       <minds-button-thumbs-up [entity]="entity" ></minds-button-thumbs-up>
     </StackLayout>

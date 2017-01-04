@@ -11,6 +11,8 @@
     <Label [text]="entity.ownerObj.name" style="font-weight:bold"></Label>
     <!--<Label [text]='"@" + entity.ownerObj.username +""' style="font-size:11"></Label>-->
     <Label [text]="entity.time_created * 1000 | date :'medium'" style="font-size:11; color: #888"></Label>
+    <Label text="rich-activity.component.html" style="font-size:11; color: red"></Label>
+
   </StackLayout>
 
 </AbsoluteLayout>
@@ -29,15 +31,16 @@
   <StackLayout class="m-native--activity--rich-embed">
     <GridLayout rows="auto" columns="*" class="m-rich-embed">
       <android>
-        <FrescoDrawee
-          [imageUri]="entity.thumbnail_src"
+        <!--<FrescoDrawee [imageUri]="entity.thumbnail_src"-->
+        <Image [src]="entity.thumbnail_src" width="100%" height="200" decodeWidth="1000" decodeHeight="600"
           actualImageScaleType="focusCrop"
           verticalAlignment="top"
           showProgressBar="false"
           progressBarColor="#AB5400"
           width="100%"
           aspectRatio="1.3"
-        ></FrescoDrawee>
+        ></Image>
+        <!--></FrescoDrawee>-->
       </android>
       <ios>
         <Image *ngIf="entity.thumbnail_src"
@@ -58,7 +61,10 @@
     </StackLayout>
   </StackLayout>
 
-  <FlexboxLayout flexDirection="row" *ngIf="!entity.remind_object" style="padding:8; text-align:center; color:#888">
+  <Label [text]="entity.thumbnail_src" style="font-size:11; color: red"></Label>
+
+  <FlexboxLayout flexDirection="row" style="padding:8; text-align:center; color:#888"
+    [visibility]="entity.remind_object ? 'collapse' : 'visible'">
     <StackLayout flexGrow="1">
       <minds-button-thumbs-up [entity]="entity" ></minds-button-thumbs-up>
     </StackLayout>

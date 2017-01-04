@@ -26,6 +26,7 @@ export class BatchActivity {
   @Input('entity') set _entity(entity){
     this.entity = entity;
     this.cache.set('channel:' + entity.ownerObj.guid, entity.ownerObj, false);
+    console.log("entity.custom_data[0].src: " + entity.custom_data[0].src);
   }
 
   onLoaded(){
